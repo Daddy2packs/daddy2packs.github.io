@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>About Us — Echo Byte</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+  <header>
+    <a href="/" style="display:flex;align-items:center;gap:10px;">
+    <img src="/images/Logo_transparntBG.png" alt="Echo Byte" class="logo-img">
+  </a>
+    <div class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </div>
+    <nav id="mainNav">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/planne/">Plans</a></li>
+        <li><a href="/about/" class="active">About us</a></li>
+        <li><a href="/portfolio/">Portfolio</a></li>
+        <li><a href="/kontak/" class="nav-cta">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="page-hero">
+    <span class="section-tag fade-in">Who we are</span>
+    <h1 class="section-title fade-in fade-in-1">About Echo Byte</h1>
+    <p class="section-sub fade-in fade-in-2">A small team with a big bias for practical, effective technology solutions.</p>
+  </div>
+
+  <section class="about">
+    <div class="about-inner">
+
+      <div class="about-visual fade-in">
+        <div class="about-img-wrap">
+          <img src="/images/teamwork.jpg" alt="Echo Byte team">
+        </div>
+        <div class="about-float">
+          <div class="about-float-icon">📍</div>
+          <div class="about-float-text">
+            <span>Based in</span>
+            <strong>Pretoria, SA</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-content fade-in fade-in-2">
+        <span class="section-tag">Our story</span>
+        <h2 class="section-title">Passionate about tech.<br>Built for people.</h2>
+        <p class="section-sub" style="margin-bottom: 28px;">
+          At Echo Byte, we believe technology should work for you — not the other way around. We started because too many people were overpaying for underwhelming IT services, or struggling alone with problems that should have been simple to fix.
+        </p>
+        <ul class="about-list">
+          <li>We work with individuals and businesses of all sizes</li>
+          <li>Every solution is tailored — nothing cookie-cutter</li>
+          <li>We explain things in plain language, not jargon</li>
+          <li>Fast response times and honest pricing, always</li>
+        </ul>
+        <a href="/kontak/" class="btn btn-primary">Work with us →</a>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="mv-section">
+    <div class="mv-grid">
+
+      <div class="mv-card fade-in">
+        <div class="mv-icon">🎯</div>
+        <h3 class="mv-title">Our Mission</h3>
+        <p class="mv-body">
+          To make technology more accessible and effective for individuals and businesses — through innovative, client-focused solutions that actually solve problems.
+        </p>
+      </div>
+
+      <div class="mv-card fade-in fade-in-1">
+        <div class="mv-icon">🔭</div>
+        <h3 class="mv-title">Our Vision</h3>
+        <p class="mv-body">
+          To be the go-to IT partner that people and businesses in our region trust and return to — known for reliability, honesty, and work that lasts.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+ <footer class="footer-reveal">
+
+  <div class="footer-preview">
+    <p>© 2026 Echo Byte. All rights reserved.</p>
+  </div>
+
+  <div class="footer-large">
+
+    <div class="footer-container">
+
+      <div class="footer-brand">
+        <img src="/images/Logo_transparntBG.png" alt="Echo Byte" class="footer-logo">
+
+        <p>
+          Practical, effective technology solutions designed for individuals
+          and businesses that value reliability and simplicity.
+        </p>
+      </div>
+
+      <div class="footer-column">
+        <h3>Navigation</h3>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/about/">About Us</a></li>
+          <li><a href="/planne/">Plans</a></li>
+          <li><a href="/services/">Services</a></li>
+          <li><a href="/kontak/">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h3>Legal</h3>
+        <ul>
+          <li><a href="/privacyagreement/">Privacy Agreement</a></li>
+          <li><a href="/TandCs/">Terms & Conditions</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+  </div>
+
+</footer>
+ 
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const footer = document.querySelector(".footer-reveal");
+  if (!footer) return;
+
+  const preview = footer.querySelector(".footer-preview");
+  const large = footer.querySelector(".footer-large");
+  const safeArea = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--sat') || '0');
+const previewH = Math.max(preview ? preview.getBoundingClientRect().height : 60, 60) + safeArea;
+  const largeH = large ? large.scrollHeight : 400;
+  const totalH = previewH + largeH;
+
+  footer.style.height = previewH + "px";
+
+  let expanded = false;
+  let startY = 0;
+
+  const open = () => { expanded = true; footer.style.height = totalH + "px"; };
+  const close = () => { expanded = false; footer.style.height = previewH + "px"; };
+
+  const nearBottom = () => {
+    const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+    if (scrollable <= 0) return true;
+    return window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 10;
+  };
+
+  window.addEventListener("wheel", (e) => {
+    if (!nearBottom()) return;
+    if (e.deltaY > 0 && !expanded) open();
+    if (e.deltaY < 0 && expanded) close();
+  }, { passive: true });
+
+  window.addEventListener("touchstart", (e) => {
+    startY = e.touches[0].clientY;
+  }, { passive: true });
+
+  window.addEventListener("touchmove", (e) => {
+    if (!nearBottom()) return;
+    const diff = startY - e.touches[0].clientY;
+    if (diff > 25 && !expanded) open();
+    if (diff < -25 && expanded) close();
+  }, { passive: true });
+});
+</script>
+
+<script>
+const toggle = document.getElementById("menuToggle");
+const nav = document.getElementById("mainNav");
+
+toggle.addEventListener("click", () => {
+  nav.classList.toggle("open");
+  toggle.classList.toggle("active");
+});
+</script>
+
+</body>
+</html>

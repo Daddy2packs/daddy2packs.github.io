@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Services — Echo Byte</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <header>
+  <img src="/images/Logo_transparntBG.png" alt="Echo Byte" class="logo-img">
+  <div class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </div>
+  <nav id="mainNav">
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/services/" class="active">Services</a></li>
+      <li><a href="/planne/">Plans</a></li>
+      <li><a href="/about/">About us</a></li>
+      <li><a href="/kontak/" class="nav-cta">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+  <!-- Page hero -->
+  <div class="page-hero">
+    <span class="section-tag fade-in">What we offer</span>
+    <h1 class="section-title fade-in fade-in-1">Our Services</h1>
+    <p class="section-sub fade-in fade-in-2">High-quality IT solutions built around your specific needs — not generic packages.</p>
+  </div>
+
+  <!-- Services -->
+  <section class="services-page">
+    <div class="services-full-grid">
+
+      <!--<div class="service-full-card fade-in">
+        <div class="sfcard-visual">🖥️</div>
+        <div class="sfcard-body">
+          <div class="sfcard-tag">Hardware</div>
+          <h2>PC Build & Upgrade</h2>
+          <p>Whether you need a powerhouse workstation, a budget gaming rig, or an upgrade to breathe new life into existing hardware — we spec, source, and build it right.</p>
+          <ul class="sfcard-features">
+            <li>Custom builds tailored to your workload and budget</li>
+            <li>Component sourcing and compatibility checks</li>
+            <li>Hardware upgrades (RAM, GPU, storage, cooling)</li>
+            <li>Post-build testing and OS setup</li>
+          </ul>
+          <a href="/kontak/" class="btn btn-primary">Get a quote →</a>
+        </div>
+      </div>-->
+
+      <!--<div class="service-full-card fade-in fade-in-1">
+        <div class="sfcard-visual">⚙️</div>
+        <div class="sfcard-body">
+          <div class="sfcard-tag">Development</div>
+          <h2>Software Development</h2>
+          <p>Off-the-shelf software rarely fits perfectly. We build custom tools, scripts, and applications that solve your specific business problems — nothing more, nothing less.</p>
+          <ul class="sfcard-features">
+            <li>Business automation and workflow tools</li>
+            <li>Desktop and web-based applications</li>
+            <li>API integrations and data pipelines</li>
+            <li>Ongoing support and iteration</li>
+          </ul>
+          <a href="/kontak/" class="btn btn-primary">Get a quote →</a>
+        </div>
+      </div>-->
+
+      <div class="service-full-card fade-in fade-in-2">
+        <div class="sfcard-visual">🌐</div>
+        <div class="sfcard-body">
+          <div class="sfcard-tag">Web</div>
+          <h2>Web Design & Development</h2>
+          <p>Modern, responsive websites built for any industry. Fast-loading, mobile-friendly, and designed to make a strong first impression — and convert visitors into customers.</p>
+          <ul class="sfcard-features">
+            <li>Full design from scratch (no templates)</li>
+            <li>Mobile-first, SEO-ready builds</li>
+            <li>E-commerce and booking integrations</li>
+            <li>Ongoing maintenance packages available</li>
+          </ul>
+          <a href="/kontak/" class="btn btn-primary">Get a quote →</a>
+        </div>
+      </div>
+
+      <!--<div class="service-full-card fade-in fade-in-3">
+        <div class="sfcard-visual">🔧</div>
+        <div class="sfcard-body">
+          <div class="sfcard-tag">Support</div>
+          <h2>IT Support & Maintenance</h2>
+          <p>Things break. Software misbehaves. We offer reliable ongoing IT support so that when something goes wrong, you're not left scrambling.</p>
+          <ul class="sfcard-features">
+            <li>Remote and on-site support</li>
+            <li>Virus removal and security hardening</li>
+            <li>Network setup and troubleshooting</li>
+            <li>Scheduled preventive maintenance</li>
+          </ul>
+          <a href="/kontak/" class="btn btn-primary">Get a quote →</a>
+        </div>
+      </div>-->
+
+    </div>
+  </section>
+
+   <footer class="footer-reveal">
+
+  <div class="footer-preview">
+    <p>© 2026 Echo Byte. All rights reserved.</p>
+  </div>
+
+  <div class="footer-large">
+
+    <div class="footer-container">
+
+      <div class="footer-brand">
+        <img src="/images/Logo_transparntBG.png" alt="Echo Byte" class="footer-logo">
+
+        <p>
+          Practical, effective technology solutions designed for individuals
+          and businesses that value reliability and simplicity.
+        </p>
+      </div>
+
+      <div class="footer-column">
+        <h3>Navigation</h3>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/about/">About Us</a></li>
+          <li><a href="/planne/">Plans</a></li>
+          <li><a href="/services/">Services</a></li>
+          <li><a href="/kontak/">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h3>Legal</h3>
+        <ul>
+          <li><a href="/privacyagreement/">Privacy Agreement</a></li>
+          <li><a href="/TandCs/">Terms & Conditions</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+  </div>
+
+</footer>
+ 
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const footer = document.querySelector(".footer-reveal");
+  if (!footer) return;
+
+  const preview = footer.querySelector(".footer-preview");
+  const large = footer.querySelector(".footer-large");
+  const safeArea = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--sat') || '0');
+const previewH = Math.max(preview ? preview.getBoundingClientRect().height : 60, 60) + safeArea;
+  const largeH = large ? large.scrollHeight : 400;
+  const totalH = previewH + largeH;
+
+  footer.style.height = previewH + "px";
+
+  let expanded = false;
+  let startY = 0;
+
+  const open = () => { expanded = true; footer.style.height = totalH + "px"; };
+  const close = () => { expanded = false; footer.style.height = previewH + "px"; };
+
+  const nearBottom = () => {
+    const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+    if (scrollable <= 0) return true;
+    return window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 10;
+  };
+
+  window.addEventListener("wheel", (e) => {
+    if (!nearBottom()) return;
+    if (e.deltaY > 0 && !expanded) open();
+    if (e.deltaY < 0 && expanded) close();
+  }, { passive: true });
+
+  window.addEventListener("touchstart", (e) => {
+    startY = e.touches[0].clientY;
+  }, { passive: true });
+
+  window.addEventListener("touchmove", (e) => {
+    if (!nearBottom()) return;
+    const diff = startY - e.touches[0].clientY;
+    if (diff > 25 && !expanded) open();
+    if (diff < -25 && expanded) close();
+  }, { passive: true });
+});
+</script>
+
+<script>
+const toggle = document.getElementById("menuToggle");
+const nav = document.getElementById("mainNav");
+
+toggle.addEventListener("click", () => {
+  nav.classList.toggle("open");
+  toggle.classList.toggle("active");
+});
+</script>
+</body>
+</html>
+
+<!--  ____            _     _       ____                   _         -->
+<!-- |  _ \  __ _  __| | __| |_   _|___ \ _ __   __ _  ___| | _____  -->
+<!-- | | | |/ _` |/ _` |/ _` | | | | __) | '_ \ / _` |/ __| |/ / __| -->
+<!-- | |_| | (_| | (_| | (_| | |_| |/ __/| |_) | (_| | (__|   <\__ \ -->
+<!-- |____/ \__,_|\__,_|\__,_|\__, |_____| .__/ \__,_|\___|_|\_\___/ -->
+<!--                          |___/      |_|                         -->

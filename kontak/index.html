@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Contact — Echo Byte</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <header>
+    <a href="/" style="display:flex;align-items:center;gap:10px;">
+    <img src="/images/Logo_transparntBG.png" alt="Echo Byte" class="logo-img">
+  </a>
+    <div class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </div>
+    <nav id="mainNav">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/planne/">Plans</a></li>
+        <li><a href="/portfolio/" >Portfolio</a></li>
+        <li><a href="/kontak/" class="active nav-cta">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="page-hero">
+    <span class="section-tag fade-in">Get in touch</span>
+    <h1 class="section-title fade-in fade-in-1">Contact Us</h1>
+    <p class="section-sub fade-in fade-in-2">Have a question or ready to get started? Fill in the form and we'll get back to you quickly.</p>
+  </div>
+
+  <section class="contact">
+    <div class="contact-inner">
+
+      <div class="fade-in">
+        <div class="contact-header">
+          <span class="section-tag">Our details</span>
+          <h2 class="section-title" style="font-size: 2rem;">Let's talk.</h2>
+          <p class="section-sub">We're based in Pretoria and available Monday to Friday. Response time is usually within a few business hours.</p>
+        </div>
+
+        <div class="contact-details">
+          <div class="contact-detail">
+            <div class="contact-detail-icon">📍</div>
+            <div class="contact-detail-text">
+              <span>Address</span>
+              Pretoria, South Africa
+            </div>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-detail-icon">📞</div>
+            <div class="contact-detail-text">
+              <span>Phone</span>
+              <a href="tel:0816013551" style="color: var(--accent);">081 601 3551</a>
+            </div>
+          </div>
+          <div class="contact-detail">
+  <div class="contact-detail-icon">📧</div>
+
+  <div class="contact-detail-text">
+    <span>Email</span>
+    <div style="display:flex; gap:10px; align-items:center;">
+      <a href="mailto:info@echobyte.co.za?subject=Website%20Enquiry" style="color: var(--accent);">
+        info@echobyte.co.za
+      </a>
+    </div>
+
+  </div>
+</div>
+          <div class="contact-detail">
+            <div class="contact-detail-icon">🕒</div>
+            <div class="contact-detail-text">
+              <span>Business hours</span>
+              Mon – Fri: 08:00 – 17:00
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: 36px; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border);">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d8551.96015011397!2d28.25247287175837!3d-25.682685198968844!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1ebfdfd0df879b63%3A0x74f209279f297a8c!2sComputer%20Mania%20Kolonnade%20Shopping%20Centre!5e0!3m2!1sen!2sza!4v1775481561170!5m2!1sen!2sza"
+            width="100%" height="220"
+            style="border:0; display:block; filter: grayscale(0.3);"
+            allowfullscreen loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+
+      <div class="contact-form fade-in fade-in-2">
+        <h3 style="font-family:'Syne',sans-serif; font-size:1.3rem; font-weight:800; margin-bottom:24px;">Send us a message</h3>
+
+        <div class="form-group">
+          <label for="name">Your name</label>
+          <input type="text" id="name" name="name" placeholder="Jane Smith" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input type="email" id="email" name="email" placeholder="jane@example.com" required>
+        </div>
+
+        <div class="form-group">
+          <label for="service">Service you're interested in</label>
+          <select id="service" name="service">
+            <option value="">— Select a service —</option>
+            <option>PC Build &amp; Upgrade</option>
+            <option>Software Development</option>
+            <option>Web Design &amp; Development</option>
+            <option>IT Support &amp; Maintenance</option>
+            <option>Something else</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Tell us a bit about what you need..." required></textarea>
+        </div>
+
+        <button type="button" class="btn btn-primary" style="width:100%; justify-content:center;" onclick="handleSubmit(this)">
+          Send message →
+        </button>
+
+        <p id="form-feedback" style="margin-top:14px; font-size:0.85rem; color:var(--muted); text-align:center; display:none;"></p>
+      </div>
+
+    </div>
+  </section>
+
+ <footer class="footer-reveal">
+
+  <div class="footer-preview">
+    <p>© 2026 Echo Byte. All rights reserved.</p>
+  </div>
+
+  <div class="footer-large">
+
+    <div class="footer-container">
+
+      <div class="footer-brand">
+        <img src="/images/Logo_transparntBG.png" alt="Echo Byte" class="footer-logo">
+
+        <p>
+          Practical, effective technology solutions designed for individuals
+          and businesses that value reliability and simplicity.
+        </p>
+      </div>
+
+      <div class="footer-column">
+        <h3>Navigation</h3>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/about/">About Us</a></li>
+          <li><a href="/planne/">Plans</a></li>
+          <li><a href="/services/">Services</a></li>
+          <li><a href="/kontak/">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h3>Legal</h3>
+        <ul>
+          <li><a href="/privacyagreement/">Privacy Agreement</a></li>
+          <li><a href="/TandCs/">Terms & Conditions</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+  </div>
+
+</footer>
+ 
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const footer = document.querySelector(".footer-reveal");
+  if (!footer) return;
+
+  const preview = footer.querySelector(".footer-preview");
+  const large = footer.querySelector(".footer-large");
+  const safeArea = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--sat') || '0');
+const previewH = Math.max(preview ? preview.getBoundingClientRect().height : 60, 60) + safeArea;
+  const largeH = large ? large.scrollHeight : 400;
+  const totalH = previewH + largeH;
+
+  footer.style.height = previewH + "px";
+
+  let expanded = false;
+  let startY = 0;
+
+  const open = () => { expanded = true; footer.style.height = totalH + "px"; };
+  const close = () => { expanded = false; footer.style.height = previewH + "px"; };
+
+  const nearBottom = () => {
+    const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+    if (scrollable <= 0) return true;
+    return window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 10;
+  };
+
+  window.addEventListener("wheel", (e) => {
+    if (!nearBottom()) return;
+    if (e.deltaY > 0 && !expanded) open();
+    if (e.deltaY < 0 && expanded) close();
+  }, { passive: true });
+
+  window.addEventListener("touchstart", (e) => {
+    startY = e.touches[0].clientY;
+  }, { passive: true });
+
+  window.addEventListener("touchmove", (e) => {
+    if (!nearBottom()) return;
+    const diff = startY - e.touches[0].clientY;
+    if (diff > 25 && !expanded) open();
+    if (diff < -25 && expanded) close();
+  }, { passive: true });
+});
+</script>
+
+<script>
+const toggle = document.getElementById("menuToggle");
+const nav = document.getElementById("mainNav");
+
+toggle.addEventListener("click", () => {
+  nav.classList.toggle("open");
+  toggle.classList.toggle("active");
+});
+</script>
+</body>
+</html>

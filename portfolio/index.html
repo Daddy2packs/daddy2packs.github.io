@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Portfolio — Echobyte</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<header>
+  <a href="/" style="display:flex;align-items:center;gap:10px;">
+    <img src="/images/Logo_transparntBG.png" alt="Echo Byte" class="logo-img">
+  </a>
+  <nav id="mainNav">
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/portfolio/" class="active">Portfolio</a></li>
+      <li><a href="/kontak/" class="nav-cta">Get Started</a></li>
+    </ul>
+  </nav>
+  <div class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><span></span><span></span><span></span></div>
+</header>
+
+<section class="page-hero">
+  <span class="section-tag">Our Work</span>
+  <h1 class="section-title">Portfolio</h1>
+  <p class="section-sub">A look at the websites we've designed, built, and launched for clients across a range of industries.</p>
+</section>
+
+<section class="portfolio-page">
+  <div class="portfolio-wrap">
+
+    <!-- ============================================================
+         EMPTY STATE
+         Shown while no projects have been published yet.
+         Once your first project card has been pasted in below,
+         delete (or comment out) this entire div.
+         ============================================================ -->
+    <section class="portfolio">
+  <br/>
+  <div class="services-grid">
+
+    <div class="service-card fade-in">
+      <div class="service-icon">🚧</div>
+      <h2>No projects published yet</h2>
+      <p>
+        We’re just getting started — our first client launches will be showcased here soon. Check back shortly!
+      </p>
+      <a href="/services/" class="service-link">Explore services →</a>
+    </div>
+
+  </div>
+  <br/><br/><br/><br/><br/><br/><br/>
+</section>
+
+
+    <!-- ============================================================
+         PROJECT TEMPLATE — FOR YOUR DELPHI TOSTRING TOOL
+         ============================================================
+
+         This block is fully commented out so it has zero effect on
+         the live page. Copy the token list below into your Delphi
+         ToString method and let it do the string replacement.
+
+         TOKENS YOUR TOOL MUST FILL IN:
+           {{NICHE}}  ->  Niche / industry  (e.g. "Restaurants & Cafés")
+           {{NAME}}   ->  Business / project name  (e.g. "Bayside Bistro")
+           {{URL}}    ->  Live site URL  (e.g. "https://baysidebistro.co.za")
+           {{DATE}}   ->  Completion month + year  (e.g. "June 2026")
+
+         ── HOW TO PASTE YOUR OUTPUT ─────────────────────────────
+
+         CASE 1 — Brand-new niche (first project in that industry):
+           Uncomment the full NICHE GROUP block (start → end) and
+           paste it just before the closing </div> of .portfolio-wrap
+           (i.e. before the "PASTE NEW BLOCKS ABOVE THIS LINE" comment).
+           Also delete the empty-state div above if this is the
+           very first project on the page.
+
+         CASE 2 — Existing niche already on the page:
+           Uncomment only the PROJECT CARD block (start → end) and
+           paste it inside that niche's .portfolio-grid, right after
+           the last existing .project-card.
+
+         ── ICON GUIDE (swap 🌐 for something niche-appropriate) ──
+           🍽️  Restaurants / Food & Beverage
+           🛒  Retail / E-commerce
+           💼  Professional Services / B2B
+           🏠  Real Estate / Property
+           🏋️  Health, Fitness & Wellness
+           💇  Beauty & Salons
+           🎓  Education & Training
+           🚗  Automotive
+           🌐  General / Tech / Other
+
+         ============================================================ -->
+
+    <!--
+    <div class="niche-group">
+      <h2 class="niche-title">{{NICHE}}</h2>
+      <div class="portfolio-grid">
+
+        
+        <div class="project-card">
+          <div class="project-visual">
+            🌐
+            <span class="project-status">&#9679; Live</span>
+          </div>
+          <div class="project-body">
+            <span class="project-niche-tag">{{NICHE}}</span>
+            <h3 class="project-name">{{NAME}}</h3>
+            <p class="project-date">Launched {{DATE}}</p>
+            <a href="{{URL}}" target="_blank" rel="noopener noreferrer" class="project-link">Visit live site &rarr;</a>
+          </div>
+        </div>
+       
+
+      </div>
+    </div>
+
+    -->
+
+
+    <!-- PASTE NEW PROJECT BLOCKS ABOVE THIS LINE -->
+
+  </div><!-- end .portfolio-wrap -->
+</section>
+
+<footer class="footer-reveal">
+
+  <div class="footer-preview">
+    <p>© 2026 Echo Byte. All rights reserved.</p>
+  </div>
+
+  <div class="footer-large">
+
+    <div class="footer-container">
+
+      <div class="footer-brand">
+        <img src="/images/Logo_transparntBG.png" alt="Echo Byte" class="footer-logo">
+
+        <p>
+          Practical, effective technology solutions designed for individuals
+          and businesses that value reliability and simplicity.
+        </p>
+      </div>
+
+      <div class="footer-column">
+        <h3>Navigation</h3>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/about/">About Us</a></li>
+          <li><a href="/planne/">Plans</a></li>
+          <li><a href="/services/">Services</a></li>
+          <li><a href="/kontak/">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h3>Legal</h3>
+        <ul>
+          <li><a href="/privacyagreement/">Privacy Agreement</a></li>
+          <li><a href="/TandCs/">Terms & Conditions</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+  </div>
+
+</footer>
+ 
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const footer = document.querySelector(".footer-reveal");
+
+  if (!footer) return;
+
+  let startY = 0;
+
+  // Page is too short to scroll OR user is at the bottom
+  const nearBottom = () => {
+    const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+    if (scrollable <= 0) return true; // page fits in viewport — always "at bottom"
+    return window.innerHeight + window.scrollY >=  document.documentElement.scrollHeight - 60;
+  };
+
+  // DESKTOP (mouse wheel)
+  window.addEventListener("wheel", (e) => {
+    if (!nearBottom()) return;
+
+    if (e.deltaY > 0) {
+      footer.classList.add("expanded");
+    }
+
+    if (e.deltaY < 0) {
+      footer.classList.remove("expanded");
+    }
+  }, { passive: true });
+
+  // MOBILE (touch)
+  window.addEventListener("touchstart", (e) => {
+    startY = e.touches[0].clientY;
+  }, { passive: true });
+
+  window.addEventListener("touchmove", (e) => {
+    if (!nearBottom()) return;
+
+    const y = e.touches[0].clientY;
+    const diff = startY - y;
+
+    if (diff > 25) {
+      footer.classList.add("expanded"); // swipe up
+    }
+
+    if (diff < -25) {
+      footer.classList.remove("expanded"); // swipe down
+    }
+  }, { passive: true });
+});
+</script>
+
+<script>
+const toggle = document.getElementById("menuToggle");
+const nav = document.getElementById("mainNav");
+
+toggle.addEventListener("click", () => {
+  nav.classList.toggle("open");
+  toggle.classList.toggle("active");
+});
+</script>
+
+</body>
+</html>

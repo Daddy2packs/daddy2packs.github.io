@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Echo Byte — IT Solutions</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <header>
+    <a href="/" style="display:flex;align-items:center;gap:10px;">
+    <img src="/images/Logo_transparntBG.png" alt="Echo Byte" class="logo-img">
+  </a>
+    <div class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </div>
+    <nav id="mainNav">
+      <ul>
+        <li><a href="/planne/">Plans</a></li>
+        <li><a href="/portfolio/" >Portfolio</a></li>
+        <li><a href="/kontak/" class="nav-cta">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="hero-badge fade-in">Available in Pretoria &amp; surrounds</div>
+      <h1 class="fade-in fade-in-1">
+        Technology that<br><span class="grad">actually works</span><br>for you.
+      </h1>
+      <p class="fade-in fade-in-2">
+        We build, repair, and optimise PCs and software tailored to your needs — so you can focus on what matters.
+      </p>
+      <div class="hero-actions fade-in fade-in-3">
+        <a href="/services/" class="btn btn-primary">Explore services →</a>
+        <a href="/kontak/" class="btn btn-ghost">Get in touch</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="stats-bar">
+    <div class="stat-item">
+      <span class="stat-num">100%</span>
+      <span class="stat-label">Hands-on service</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">1</span>
+      <span class="stat-label">Core service areas</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">Fast</span>
+      <span class="stat-label">Turnaround times</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">Local</span>
+      <span class="stat-label">Based in Pretoria</span>
+    </div>
+  </div>
+
+  <section class="services">
+    <div class="services-header">
+      <span class="section-tag">What we do</span>
+      <h2 class="section-title">Built for real<br>business needs.</h2>
+      <p class="section-sub">Full websites — we handle the tech so you don't have to.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card fade-in fade-in-2">
+        <div class="service-icon">🌐</div>
+        <h2>Web Design &amp; Development</h2>
+        <p>Modern, responsive websites for any industry — fast, clean, and built to convert.</p>
+        <a href="/services/" class="service-link">Learn more →</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer-reveal">
+
+  <div class="footer-preview">
+    <p>© 2026 Echo Byte. All rights reserved.</p>
+  </div>
+
+  <div class="footer-large">
+
+    <div class="footer-container">
+
+      <div class="footer-brand">
+        <img src="/images/Logo_transparntBG.png" alt="Echo Byte" class="footer-logo">
+
+        <p>
+          Practical, effective technology solutions designed for individuals
+          and businesses that value reliability and simplicity.
+        </p>
+      </div>
+
+      <div class="footer-column">
+        <h3>Navigation</h3>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/about/">About Us</a></li>
+          <li><a href="/planne/">Plans</a></li>
+          <li><a href="/services/">Services</a></li>
+          <li><a href="/kontak/">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h3>Legal</h3>
+        <ul>
+          <li><a href="/privacyagreement/">Privacy Agreement</a></li>
+          <li><a href="/TandCs/">Terms & Conditions</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+  </div>
+
+</footer>
+ 
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const footer = document.querySelector(".footer-reveal");
+  if (!footer) return;
+
+  const preview = footer.querySelector(".footer-preview");
+  const large = footer.querySelector(".footer-large");
+  const safeArea = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--sat') || '0');
+const previewH = Math.max(preview ? preview.getBoundingClientRect().height : 60, 60) + safeArea;
+  const largeH = large ? large.scrollHeight : 400;
+  const totalH = previewH + largeH;
+
+  footer.style.height = previewH + "px";
+
+  let expanded = false;
+  let startY = 0;
+
+  const open = () => { expanded = true; footer.style.height = totalH + "px"; };
+  const close = () => { expanded = false; footer.style.height = previewH + "px"; };
+
+  const nearBottom = () => {
+    const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+    if (scrollable <= 0) return true;
+    return window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 10;
+  };
+
+  window.addEventListener("wheel", (e) => {
+    if (!nearBottom()) return;
+    if (e.deltaY > 0 && !expanded) open();
+    if (e.deltaY < 0 && expanded) close();
+  }, { passive: true });
+
+  window.addEventListener("touchstart", (e) => {
+    startY = e.touches[0].clientY;
+  }, { passive: true });
+
+  window.addEventListener("touchmove", (e) => {
+    if (!nearBottom()) return;
+    const diff = startY - e.touches[0].clientY;
+    if (diff > 25 && !expanded) open();
+    if (diff < -25 && expanded) close();
+  }, { passive: true });
+});
+</script>
+
+<script>
+const toggle = document.getElementById("menuToggle");
+const nav = document.getElementById("mainNav");
+
+toggle.addEventListener("click", () => {
+  nav.classList.toggle("open");
+  toggle.classList.toggle("active");
+});
+</script>
+</body>
+</html>

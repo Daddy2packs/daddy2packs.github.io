@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Echo Byte — Welcome Onboard</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+  <div class="onboard-wrap" id="onboardWrap">
+
+    <img src="/images/Logo_transparntBG.png" alt="Echo Byte" class="onboard-logo">
+
+    <div class="step-indicator" id="stepDots">
+      <div class="step-dot active" id="dot0"></div>
+      <div class="step-dot"        id="dot1"></div>
+      <div class="step-dot"        id="dot2"></div>
+    </div>
+
+    <!-- STEP 1 -->
+    <div class="card" id="step0">
+      <div class="card-title">Tell us about your business</div>
+      <div class="card-sub">This helps us build something that truly represents you.</div>
+
+      <div class="field">
+        <label>Business name <span class="req">*</span></label>
+        <input type="text" id="bizName" placeholder="e.g. Botha's Bakery" required>
+        <div class="field-error" id="err-bizName">Please enter your business name.</div>
+      </div>
+
+      <div class="field">
+        <label>Industry / niche <span class="req">*</span></label>
+        <input type="text" id="bizNiche" placeholder="e.g. Bakery, Law firm, Plumber…" required>
+        <div class="field-error" id="err-bizNiche">Please enter your industry.</div>
+      </div>
+
+      <div class="field">
+        <label>Contact email <span class="req">*</span></label>
+        <input type="email" id="bizEmail" placeholder="you@yourbusiness.co.za" required>
+        <div class="field-error" id="err-bizEmail">Please enter a valid email address.</div>
+      </div>
+
+      <div class="field">
+        <label>Contact phone <span class="req">*</span></label>
+        <input type="tel" id="bizPhone" placeholder="+27 82 000 0000" required>
+        <div class="field-error" id="err-bizPhone">Please enter a phone number.</div>
+      </div>
+
+      <div class="field">
+        <label>Upload your logo (preferably with no background) <span class="req">*</span></label>
+        <div class="upload-area" id="logoUploadArea">
+          <input type="file" id="logoFile" accept="image/*,.svg,.pdf" required>
+          <div class="upload-icon">🖼️</div>
+          <div class="upload-label"><strong>Click to upload</strong> or drag &amp; drop<br>PNG, SVG, JPG or PDF · max 10 MB</div>
+          <div class="upload-preview" id="logoPreview">
+            <img id="logoPreviewImg" src="" alt="Logo preview">
+            <span id="logoFileName"></span>
+          </div>
+        </div>
+        <div class="field-error" id="err-logo">Please upload your logo.</div>
+      </div>
+
+      <div class="field">
+        <label>Colour palette <span class="req">*</span></label>
+
+        <div style="display:flex; flex-direction:column; gap:10px; margin-bottom:16px;">
+
+          <div style="display:flex; align-items:center; gap:14px;">
+            <input type="color" id="color1" value="#4f8eff" style="width:44px;height:44px;border-radius:8px;border:1px solid var(--border);background:none;cursor:pointer;padding:2px;flex-shrink:0;">
+            <div>
+              <div style="font-size:0.82rem;font-weight:700;color:var(--text);">Primary</div>
+              <div style="font-size:0.75rem;color:var(--muted);">Buttons, links, highlights &amp; accent elements</div>
+            </div>
+          </div>
+
+          <div style="display:flex; align-items:center; gap:14px;">
+            <input type="color" id="color2" value="#ffffff" style="width:44px;height:44px;border-radius:8px;border:1px solid var(--border);background:none;cursor:pointer;padding:2px;flex-shrink:0;">
+            <div>
+              <div style="font-size:0.82rem;font-weight:700;color:var(--text);">Secondary</div>
+              <div style="font-size:0.75rem;color:var(--muted);">Headings, logo text &amp; main body copy</div>
+            </div>
+          </div>
+
+          <div style="display:flex; align-items:center; gap:14px;">
+            <input type="color" id="color3" value="#0a0a0f" style="width:44px;height:44px;border-radius:8px;border:1px solid var(--border);background:none;cursor:pointer;padding:2px;flex-shrink:0;">
+            <div>
+              <div style="font-size:0.82rem;font-weight:700;color:var(--text);">Background</div>
+              <div style="font-size:0.75rem;color:var(--muted);">Page &amp; card backgrounds — usually your darkest colour</div>
+            </div>
+          </div>
+
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- Live preview -->
+        <div style="border-radius:10px;overflow:hidden;border:1px solid var(--border);font-family:'Space Grotesk',sans-serif;font-size:0;">
+          <div style="background:rgba(79,142,255,0.08);border-bottom:1px solid var(--border);padding:7px 14px;font-size:0.7rem;font-weight:600;color:var(--accent);letter-spacing:0.08em;text-transform:uppercase;">Live preview</div>
+
+          <div id="prev-nav" style="display:flex;align-items:center;justify-content:space-between;padding:10px 16px;background:#0a0a0f;">
+            <div id="prev-logo-wrap" style="display:flex;align-items:center;height:28px;">
+              <img id="prev-logo-img" src="" alt="Logo" style="max-height:28px;max-width:100px;object-fit:contain;display:none;">
+              <div id="prev-logo" style="font-weight:800;font-size:0.88rem;color:#4f8eff;letter-spacing:0.03em;">YourLogo</div>
+            </div>
+            <div style="display:flex;gap:6px;align-items:center;">
+              <div style="font-size:0.7rem;color:#666;padding:3px 8px;">Home</div>
+              <div style="font-size:0.7rem;color:#666;padding:3px 8px;">About</div>
+              <div id="prev-cta" style="font-size:0.7rem;font-weight:700;padding:4px 10px;border-radius:4px;background:#4f8eff;color:#fff;">Contact</div>
+            </div>
+          </div>
+
+          <div id="prev-hero" style="padding:26px 20px 20px;text-align:center;background:#0a0a0f;">
+            <div id="prev-tag" style="display:inline-block;font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#4f8eff;margin-bottom:8px;">Our Services</div>
+            <div id="prev-h1" style="font-size:1.25rem;font-weight:800;color:#fff;margin-bottom:7px;line-height:1.2;">Your Business Headline</div>
+            <div id="prev-sub" style="font-size:0.75rem;color:#888;margin-bottom:14px;line-height:1.5;">A short description that tells visitors what you do and why they should care.</div>
+            <div id="prev-btn" style="display:inline-block;padding:7px 16px;border-radius:5px;font-size:0.75rem;font-weight:700;background:#4f8eff;color:#fff;cursor:default;">Get started →</div>
+          </div>
+
+          <div id="prev-cards-wrap" style="background:#111118;padding:14px;display:flex;gap:10px;border-top:1px solid rgba(255,255,255,0.07);">
+            <div id="prev-card" style="flex:1;background:#16161f;border:1px solid rgba(255,255,255,0.07);border-radius:7px;padding:12px;">
+              <div id="prev-card-title" style="font-size:0.78rem;font-weight:700;color:#fff;margin-bottom:4px;">Feature One</div>
+              <div id="prev-card-body" style="font-size:0.68rem;color:#888;line-height:1.5;">Short description of this service or feature.</div>
+              <div id="prev-card-link" style="font-size:0.66rem;font-weight:700;color:#4f8eff;margin-top:7px;">Learn more →</div>
+            </div>
+            <div id="prev-card2" style="flex:1;background:#16161f;border:1px solid rgba(255,255,255,0.07);border-radius:7px;padding:12px;">
+              <div id="prev-card2-title" style="font-size:0.78rem;font-weight:700;color:#fff;margin-bottom:4px;">Feature Two</div>
+              <div id="prev-card2-body" style="font-size:0.68rem;color:#888;line-height:1.5;">Another thing your business does really well.</div>
+              <div id="prev-card2-link" style="font-size:0.66rem;font-weight:700;color:#4f8eff;margin-top:7px;">Learn more →</div>
+            </div>
+          </div>
+
+          <div id="prev-footer" style="background:#0a0a0f;border-top:1px solid rgba(255,255,255,0.07);padding:9px 16px;display:flex;justify-content:space-between;align-items:center;">
+            <div id="prev-footer-text" style="font-size:0.63rem;color:#555;">© 2026 YourBrand. All rights reserved.</div>
+            <div id="prev-footer-link" style="font-size:0.63rem;color:#4f8eff;">Contact us</div>
+          </div>
+        </div>
+        <!-- /Live preview -->
+         <br/> 
+        <div style="margin-top:16px; display:flex; flex-direction:column; gap:10px; font-size:0.85rem; color:var(--text);">
+
+        <label style="display:flex; align-items:flex-start; gap:10px; cursor:pointer;">
+          <input type="checkbox" id="agreeTerms" required style="margin-top:3px;">
+            <span>
+               I agree to the
+           <a href="/TandCs/"
+               target="_blank"
+                style="color:var(--accent); text-decoration:underline;">
+               Terms &amp; Conditions
+           </a>.
+           </span>
+       </label>
+
+       <label style="display:flex; align-items:flex-start; gap:10px; cursor:pointer;">
+         <input type="checkbox" id="agreePrivacy" required style="margin-top:3px;">
+          <span>
+             I agree to the
+           <a href="/privacyagreement/"
+             target="_blank"
+             style="color:var(--accent); text-decoration:underline;">
+             Privacy Agreement
+           </a>.
+     </span>
+    </label>
+
+     <div class="field-error" id="err-agreements">
+    Please accept both agreements before continuing.
+    </div>
+
+ </div>
+      </div><!-- /colour palette field -->
+
+    </div><!-- /step0 -->
+
+    <!-- STEP 2 -->
+    <div class="card" id="step1" style="display:none;">
+      <div class="card-title">A little more detail</div>
+      <div class="card-sub">All fields on this page are optional — fill in what you have.</div>
+
+      <div class="field">
+        <label>Banner / hero image <span class="opt">(optional)</span></label>
+        <div class="upload-area" id="bannerUploadArea">
+          <input type="file" id="bannerFile" accept="image/*">
+          <div class="upload-icon">🖼️</div>
+          <div class="upload-label"><strong>Click to upload</strong> or drag &amp; drop<br>PNG or JPG · ideally 1920×600 px · max 20 MB</div>
+          <div class="upload-preview" id="bannerPreview">
+            <img id="bannerPreviewImg" src="" alt="Banner preview">
+            <span id="bannerFileName"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Physical address <span class="opt">(optional)</span></label>
+        <textarea id="bizAddress" placeholder="123 Church Street&#10;Pretoria, 0001"></textarea>
+      </div>
+
+      <div class="field">
+        <label>Website (if you already have one) <span class="opt">(optional)</span></label>
+        <input type="url" id="bizWebsite" placeholder="https://www.yourbusiness.co.za">
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label>Facebook page URL <span class="opt">(optional)</span></label>
+          <input type="url" id="bizFacebook" placeholder="https://facebook.com/yourpage">
+        </div>
+        <div class="field">
+          <label>Instagram handle <span class="opt">(optional)</span></label>
+          <input type="text" id="bizInstagram" placeholder="@yourhandle">
+        </div>
+      </div>
+
+      <div class="field">
+        <label>About your business <span class="opt">(optional)</span> <span class="opt">— a short paragraph we can use as a starting point</span></label>
+        <textarea id="bizAbout" rows="4" placeholder="Tell us who you are, what you do, and who you help…"></textarea>
+      </div>
+
+      <div class="field">
+        <label>Anything else we should know? <span class="opt">(optional)</span></label>
+        <textarea id="bizNotes" rows="3" placeholder="Special requests, important info, preferred style, etc."></textarea>
+      </div>
+    </div><!-- /step1 -->
+
+    <!-- STEP 3 -->
+    <div class="card" id="step2" style="display:none;">
+      <div class="card-title">Setup deposit</div>
+      <div class="card-sub">A 50% deposit is required before work begins. The balance is due on launch day.</div>
+
+      <div class="payment-notice">
+        <span class="lock">🔒</span>
+        Your card details are encrypted and processed securely by Stripe. Echo Byte never stores your card number.
+      </div>
+
+      <div class="field">
+        <label>Card details</label>
+        <div class="stripe-placeholder">
+          <span class="stripe-icon">💳</span>
+          <span>Card element mounts here once Stripe is configured</span>
+        </div>
+        <div class="stripe-badge">Powered by Stripe — coming soon</div>
+      </div>
+
+      <div id="stripe-card-element" style="display:none;"></div>
+      <div id="stripe-card-errors" style="color:#e05555;font-size:0.82rem;margin-top:6px;"></div>
+
+      <div class="payment-notice" style="margin-top:20px;margin-bottom:0;">
+        <span class="lock">ℹ️</span>
+        After payment you'll receive an email confirmation and we'll be in touch within 1 business day to kick things off.
+      </div>
+    </div><!-- /step2 -->
+
+    <!-- Success screen -->
+    <div class="success-screen" id="successScreen">
+      <div class="success-icon">🎉</div>
+      <h2>You're all set!</h2>
+      <p>We've received your details and your deposit payment. <strong>Watch your inbox</strong> — we'll be in touch within 1 business day to start building your site.</p>
+      <br>
+      <p style="color:var(--muted);font-size:0.85rem;">
+        Questions? <a href="mailto:hello@echobyte.co.za" style="color:var(--accent);">hello@echobyte.co.za</a>
+      </p>
+    </div>
+
+    <!-- Navigation buttons -->
+    <div class="step-nav" id="stepNav">
+      <button class="btn-back" id="btnBack" style="display:none;" onclick="prevStep()">← Back</button>
+      <button class="btn-next" id="btnNext" onclick="nextStep()">Next →</button>
+    </div>
+
+  </div><!-- /onboard-wrap -->
+
+  <script>
+    // ── Supabase ───────────────────────────────────
+    const sb = window.supabase.createClient(
+      'https://xtzmredbdwcrozjfario.supabase.co',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh0em1yZWRiZHdjcm96amZhcmlvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg5NDU3NDIsImV4cCI6MjA5NDUyMTc0Mn0.QXJNbGHpDni8zs_eBfcEnIh5MCD6mT_nPTOiqCLYM9o'
+    );
+
+    // ── State ──────────────────────────────────────
+    let currentStep  = 0;
+    const totalSteps = 3;
+    let logoFileData   = null;
+    let bannerFileData = null;
+
+    // ── Step navigation ────────────────────────────
+    function showStep(n) {
+      for (let i = 0; i < totalSteps; i++) {
+        const el  = document.getElementById('step' + i);
+        const dot = document.getElementById('dot'  + i);
+        if (el)  el.style.display = (i === n) ? 'block' : 'none';
+        if (dot) {
+          dot.classList.toggle('active', i === n);
+          dot.classList.toggle('done',   i < n);
+        }
+      }
+      document.getElementById('btnBack').style.display = n > 0 ? 'inline-block' : 'none';
+      document.getElementById('btnNext').textContent   = n === totalSteps - 1 ? 'Submit & Pay →' : 'Next →';
+      currentStep = n;
+    }
+
+    function nextStep() {
+      if (!validateStep(currentStep)) return;
+      if (currentStep < totalSteps - 1) {
+        showStep(currentStep + 1);
+      } else {
+        submitForm();
+      }
+    }
+
+    function prevStep() {
+      if (currentStep > 0) showStep(currentStep - 1);
+    }
+
+    // ── Validation ─────────────────────────────────
+    function validateStep(n) {
+      if (n !== 0) return true;
+      let valid = true;
+
+      function check(id, errId, testFn) {
+        const el  = document.getElementById(id);
+        const err = document.getElementById(errId);
+        const ok  = testFn(el);
+        el.classList.toggle('invalid', !ok);
+        if (err) err.style.display = ok ? 'none' : 'block';
+        if (!ok) valid = false;
+      }
+
+      check('bizName',  'err-bizName',  el => el.value.trim().length > 0);
+      check('bizNiche', 'err-bizNiche', el => el.value.trim().length > 0);
+      check('bizEmail', 'err-bizEmail', el => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value.trim()));
+      check('bizPhone', 'err-bizPhone', el => el.value.trim().length > 6);
+
+      const logoErr = document.getElementById('err-logo');
+      if (!logoFileData) {
+        logoErr.style.display = 'block';
+        valid = false;
+      } else {
+        logoErr.style.display = 'none';
+      }
+
+      return valid;
+    }
+
+    // ── File upload helpers ────────────────────────
+    function setupUpload(inputId, previewId, previewImgId, fileNameId, areaId, onFile) {
+      const input   = document.getElementById(inputId);
+      const area    = document.getElementById(areaId);
+      const preview = document.getElementById(previewId);
+      const img     = document.getElementById(previewImgId);
+      const name    = document.getElementById(fileNameId);
+
+      function handleFile(file) {
+        if (!file) return;
+        onFile(file);
+        name.textContent = file.name + ' (' + (file.size / 1024).toFixed(1) + ' KB)';
+        if (file.type.startsWith('image/')) {
+          const reader = new FileReader();
+          reader.onload = e => { img.src = e.target.result; preview.style.display = 'block'; };
+          reader.readAsDataURL(file);
+        } else {
+          img.style.display = 'none';
+          preview.style.display = 'block';
+        }
+      }
+
+      input.addEventListener('change', () => handleFile(input.files[0]));
+      area.addEventListener('dragover',  e => { e.preventDefault(); area.classList.add('dragover'); });
+      area.addEventListener('dragleave', ()  => area.classList.remove('dragover'));
+      area.addEventListener('drop', e => {
+        e.preventDefault();
+        area.classList.remove('dragover');
+        handleFile(e.dataTransfer.files[0]);
+      });
+    }
+
+    setupUpload('logoFile', 'logoPreview', 'logoPreviewImg', 'logoFileName', 'logoUploadArea',
+      file => {
+        const reader = new FileReader();
+        reader.onload = e => {
+          logoFileData = { name: file.name, type: file.type, data: e.target.result };
+          const previewImg  = document.getElementById('prev-logo-img');
+          const previewText = document.getElementById('prev-logo');
+          if (file.type.startsWith('image/')) {
+            previewImg.src = e.target.result;
+            previewImg.style.display = 'block';
+            previewText.style.display = 'none';
+          }
+        };
+        reader.readAsDataURL(file);
+      }
+    );
+
+    setupUpload('bannerFile', 'bannerPreview', 'bannerPreviewImg', 'bannerFileName', 'bannerUploadArea',
+      file => {
+        const reader = new FileReader();
+        reader.onload = e => { bannerFileData = { name: file.name, type: file.type, data: e.target.result }; };
+        reader.readAsDataURL(file);
+      }
+    );
+
+    // ── Submit ─────────────────────────────────────
+    async function submitForm() {
+      const btnNext = document.getElementById('btnNext');
+      btnNext.textContent = 'Besig om te stoor…';
+      btnNext.disabled = true;
+
+      const bizName    = document.getElementById('bizName').value.trim();
+      const safeName   = bizName.replace(/[^a-z0-9]/gi, '_').toLowerCase();
+      const folderPath = safeName + '_' + Date.now();
+
+      let logoPath   = null;
+      let bannerPath = null;
+
+      if (logoFileData) {
+        const logoBlob = await fetch(logoFileData.data).then(r => r.blob());
+        const { data, error } = await sb.storage
+          .from('client-files')
+          .upload(folderPath + '/logo_' + logoFileData.name, logoBlob, { contentType: logoFileData.type });
+        if (!error) logoPath = data.path;
+      }
+
+      if (bannerFileData) {
+        const bannerBlob = await fetch(bannerFileData.data).then(r => r.blob());
+        const { data, error } = await sb.storage
+          .from('client-files')
+          .upload(folderPath + '/banner_' + bannerFileData.name, bannerBlob, { contentType: bannerFileData.type });
+        if (!error) bannerPath = data.path;
+      }
+
+      const { error: dbError } = await sb.from('Submissions').insert({
+          business_name:     bizName,
+          niche:             document.getElementById('bizNiche').value.trim(),
+          email:             document.getElementById('bizEmail').value.trim(),
+          phone:             document.getElementById('bizPhone').value.trim(),
+          primary_colour:    document.getElementById('color1').value,
+          secondary_colour:  document.getElementById('color2').value,
+          background_colour: document.getElementById('color3').value,
+          address:           document.getElementById('bizAddress').value.trim(),
+          website:           document.getElementById('bizWebsite').value.trim(),
+          facebook:          document.getElementById('bizFacebook').value.trim(),
+          instagram:         document.getElementById('bizInstagram').value.trim(),
+          about:             document.getElementById('bizAbout').value.trim(),
+          notes:             document.getElementById('bizNotes').value.trim(),
+          logo_path:         logoPath,
+          banner_path:       bannerPath,
+        });
+
+      if (dbError) {
+        btnNext.textContent = 'Submit & Pay →';
+        btnNext.disabled = false;
+        alert('Iets het verkeerd gegaan. Probeer asseblief weer.');
+        console.error(dbError);
+        return;
+      }
+
+      document.getElementById('step2').style.display    = 'none';
+      document.getElementById('stepDots').style.display = 'none';
+      document.getElementById('stepNav').style.display  = 'none';
+      document.getElementById('successScreen').style.display = 'flex';
+    }
+
+    // ── Live colour preview ────────────────────────
+    function updatePreview() {
+      const bizName   = document.getElementById('bizName').value.trim() || 'Your Business Headline';
+      const primary   = document.getElementById('color1').value;
+      const secondary = document.getElementById('color2').value;
+      const bg        = document.getElementById('color3').value;
+
+      function hexToRgb(hex) {
+        return [parseInt(hex.slice(1,3),16), parseInt(hex.slice(3,5),16), parseInt(hex.slice(5,7),16)];
+      }
+
+      function blend(hex, factor) {
+        const [r,g,b] = hexToRgb(hex);
+        const target = factor > 0 ? 255 : 0;
+        const f = Math.abs(factor);
+        return '#' + [r,g,b].map(c => Math.round(c + (target - c) * f).toString(16).padStart(2,'0')).join('');
+      }
+
+      function luminance(hex) {
+        return hexToRgb(hex).reduce((sum, c, i) => {
+          c /= 255;
+          c = c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+          return sum + c * [0.2126, 0.7152, 0.0722][i];
+        }, 0);
+      }
+
+      function contrastText(hex) { return luminance(hex) > 0.35 ? '#111' : '#fff'; }
+
+      const bgDark   = bg;
+      const bgMid    = blend(bg, 0.08);
+      const bgCard   = blend(bg, 0.05);
+      const mutedTxt = blend(secondary, luminance(bg) > 0.35 ? -0.4 : -0.45);
+      const btnTxt   = contrastText(primary);
+      const border   = luminance(bg) > 0.5 ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.07)';
+
+      document.getElementById('prev-nav').style.background        = bgDark;
+      document.getElementById('prev-logo').style.color            = primary;
+      document.getElementById('prev-cta').style.background        = primary;
+      document.getElementById('prev-cta').style.color             = btnTxt;
+
+      document.getElementById('prev-hero').style.background       = bgDark;
+      document.getElementById('prev-tag').style.color             = primary;
+      document.getElementById('prev-h1').style.color              = secondary;
+      document.getElementById('prev-h1').textContent              = bizName;
+      document.getElementById('prev-sub').style.color             = mutedTxt;
+      document.getElementById('prev-btn').style.background        = primary;
+      document.getElementById('prev-btn').style.color             = btnTxt;
+
+      document.getElementById('prev-cards-wrap').style.background = bgMid;
+      document.getElementById('prev-cards-wrap').style.borderTop  = '1px solid ' + border;
+
+      document.getElementById('prev-card').style.background       = bgCard;
+      document.getElementById('prev-card').style.border           = '1px solid ' + border;
+      document.getElementById('prev-card-title').style.color      = secondary;
+      document.getElementById('prev-card-body').style.color       = mutedTxt;
+      document.getElementById('prev-card-link').style.color       = primary;
+
+      document.getElementById('prev-card2').style.background      = bgCard;
+      document.getElementById('prev-card2').style.border          = '1px solid ' + border;
+      document.getElementById('prev-card2-title').style.color     = secondary;
+      document.getElementById('prev-card2-body').style.color      = mutedTxt;
+      document.getElementById('prev-card2-link').style.color      = primary;
+
+      document.getElementById('prev-footer').style.background     = bgDark;
+      document.getElementById('prev-footer').style.borderTop      = '1px solid ' + border;
+      document.getElementById('prev-footer-link').style.color     = primary;
+      document.getElementById('prev-footer-text').style.color     = mutedTxt;
+      document.getElementById('prev-footer-text').textContent     = '© 2026 ' + bizName + '. All rights reserved.';
+    }
+
+    document.getElementById('color1').addEventListener('input', updatePreview);
+    document.getElementById('color2').addEventListener('input', updatePreview);
+    document.getElementById('color3').addEventListener('input', updatePreview);
+    document.getElementById('bizName').addEventListener('input', updatePreview);
+    updatePreview();
+
+    showStep(0);
+  </script>
+
+<script>
+const toggle = document.getElementById("menuToggle");
+const nav = document.getElementById("mainNav");
+
+if (toggle && nav) {
+  toggle.addEventListener("click", () => {
+    nav.classList.toggle("open");
+    toggle.classList.toggle("active");
+  });
+}
+</script>
+</body>
+</html>
